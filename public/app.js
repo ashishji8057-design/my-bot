@@ -54,8 +54,18 @@ themeBtn.addEventListener('click', () => {
 });
 
 // ── Sidebar Toggle ─────────────────────────────────────────────
+const sidebarBackdrop = $('sidebar-backdrop');
 hamburgerBtn.addEventListener('click', () => {
-  sidebar.classList.toggle('collapsed');
+  if (window.innerWidth <= 768) {
+    sidebar.classList.toggle('open');
+    sidebarBackdrop?.classList.toggle('show');
+  } else {
+    sidebar.classList.toggle('collapsed');
+  }
+});
+sidebarBackdrop?.addEventListener('click', () => {
+  sidebar.classList.remove('open');
+  sidebarBackdrop.classList.remove('show');
 });
 
 // ── Model ──────────────────────────────────────────────────────
@@ -216,9 +226,9 @@ function getTime() {
 function appendMessage(role, content) {
   const row = document.createElement('div');
   row.className = `message-row ${role}`;
-  const avatarText = role === 'bot' ? 'μ' : 'U';
+  const avatarHtml = role === 'bot' ? 'μ' : '<img src="assets/ashish.jpg" alt="Ashish" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">';
   row.innerHTML = `
-    <div class="msg-avatar ${role}">${avatarText}</div>
+    <div class="msg-avatar ${role}" style="overflow:hidden; padding:0;">${avatarHtml}</div>
     <div class="msg-content">
       <div class="msg-bubble">${role === 'bot' ? formatMessage(content) : escapeHtml(content)}</div>
       <div class="msg-time">${getTime()}</div>

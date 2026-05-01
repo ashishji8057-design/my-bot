@@ -23,6 +23,9 @@
   <!-- App Shell -->
   <div class="app-shell">
 
+    <!-- Sidebar Backdrop for Mobile -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-header">
@@ -74,10 +77,12 @@
 
       <!-- Sidebar Footer -->
       <div class="sidebar-footer">
-        <div class="user-badge">
-          <div class="user-avatar">μ</div>
+        <div class="user-badge interactive-hover">
+          <div class="user-avatar">
+            <img src="assets/ashish.jpg" alt="Ashish Sharma" id="sidebar-profile-img" />
+          </div>
           <div class="user-info">
-            <span class="user-name">You</span>
+            <span class="user-name">Ashish Sharma</span>
             <span class="user-sub">Local Session</span>
           </div>
         </div>
@@ -188,6 +193,17 @@
       <span></span><span></span><span></span>
     </div>
   </div>
+
+  <!-- Created By Badge -->
+  <a href="#" class="created-by-badge interactive-hover" title="Developer">
+    <div class="creator-avatar">
+      <img src="assets/ashish.jpg" alt="Ashish Sharma" />
+    </div>
+    <div class="creator-text">
+      <span>Created by</span>
+      <strong>Ashish Sharma</strong>
+    </div>
+  </a>
 
   <script src="app.js"></script>
 </body>

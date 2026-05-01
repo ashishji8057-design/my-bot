@@ -443,8 +443,24 @@ body {
 .thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
 
 /* ─── Responsive ───────────────────────────────────────────── */
+.sidebar-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 90;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  backdrop-filter: blur(2px);
+}
+.sidebar-backdrop.show {
+  opacity: 1; pointer-events: auto;
+}
+
 @media (max-width: 768px) {
-  .sidebar { position: absolute; height: 100%; z-index: 10; }
+  .sidebar { 
+    position: fixed; top: 0; bottom: 0; left: 0; z-index: 100;
+    transform: translateX(-100%);
+    background: rgba(18, 18, 28, 0.98);
+  }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar.collapsed { transform: translateX(-100%); }
+  
   .suggestion-grid { grid-template-columns: 1fr; }
   .msg-content { max-width: 88%; }
   .welcome-title { font-size: 1.5rem; }
@@ -512,7 +528,12 @@ body {
 
 @media (max-width: 768px) {
   .created-by-badge {
-    left: 24px;
-    bottom: 24px;
+    left: 16px;
+    bottom: 80px;
+    transform: scale(0.85);
+    transform-origin: bottom left;
+  }
+  .created-by-badge:hover {
+    transform: translateY(-5px) scale(0.9);
   }
 }
