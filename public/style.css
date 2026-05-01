@@ -180,14 +180,30 @@ body {
   display: flex; align-items: center; justify-content: space-between;
 }
 
-.user-badge { display: flex; align-items: center; gap: 10px; }
+.user-badge { 
+  display: flex; align-items: center; gap: 10px; padding: 6px 10px; border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.user-badge:hover {
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transform: translateY(-2px);
+}
 .user-avatar {
-  width: 34px; height: 34px; border-radius: 50%;
+  width: 36px; height: 36px; border-radius: 50%;
   background: var(--grad); display: flex; align-items: center; justify-content: center;
   font-weight: 700; font-size: 0.9rem; color: #fff;
+  overflow: hidden; border: 2px solid transparent;
+  transition: border 0.3s ease;
 }
+.user-badge:hover .user-avatar {
+  border: 2px solid var(--cyan-light);
+  box-shadow: 0 0 15px var(--purple);
+}
+.user-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .user-info { display: flex; flex-direction: column; }
-.user-name { font-size: 0.82rem; font-weight: 600; }
+.user-name { font-size: 0.82rem; font-weight: 600; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .user-sub { font-size: 0.68rem; color: var(--text-muted); }
 
 /* ─── Chat Main ────────────────────────────────────────────── */
@@ -447,4 +463,56 @@ body {
   background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.3);
   color: #fca5a5; border-radius: 12px; padding: 10px 14px;
   font-size: 0.82rem; display: flex; align-items: center; gap: 8px; margin: 0 20px;
+}
+
+/* ─── Ashish Sharma Created By Badge ───────────────────────── */
+.created-by-badge {
+  position: fixed; bottom: 24px; left: calc(var(--sidebar-w) + 24px); z-index: 100;
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(18, 18, 28, 0.6); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08); border-radius: 99px;
+  padding: 8px 16px 8px 8px; text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.created-by-badge:hover {
+  transform: translateY(-5px) scale(1.03);
+  border-color: rgba(124,58,237,0.5);
+  background: rgba(20, 20, 35, 0.8);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4), 0 0 20px rgba(124,58,237,0.3);
+}
+
+.creator-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  overflow: hidden; position: relative;
+  border: 2px solid transparent; background-clip: padding-box;
+}
+
+.creator-avatar::before {
+  content: ''; position: absolute; inset: -2px; border-radius: 50%;
+  background: var(--grad); z-index: -1; animation: spin 4s linear infinite;
+}
+
+.creator-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+.creator-text { display: flex; flex-direction: column; justify-content: center; }
+.creator-text span { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.creator-text strong { font-size: 0.85rem; background: var(--grad2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+[data-theme="light"] .created-by-badge {
+  background: rgba(255, 255, 255, 0.8); border-color: rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+[data-theme="light"] .created-by-badge:hover {
+  background: #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.12), 0 0 20px rgba(124,58,237,0.15);
+}
+
+@media (max-width: 768px) {
+  .created-by-badge {
+    left: 24px;
+    bottom: 24px;
+  }
 }
